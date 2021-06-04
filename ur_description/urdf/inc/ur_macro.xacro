@@ -157,7 +157,7 @@
         <origin xyz="${-0.5 * forearm_inertia_length} 0.0 ${elbow_offset}" rpy="0 ${pi/2} 0" />
       </xacro:cylinder_inertial>
     </link>
-    <link name="${prefix}wrist_1_link">
+    <link name="${prefix}wrist1_link">
       <visual>
         <!-- TODO: Move this to a parameter -->
         <origin xyz="0 0 ${wrist_1_visual_offset}" rpy="${pi/2} 0 0"/>
@@ -178,7 +178,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
       </xacro:cylinder_inertial>
     </link>
-    <link name="${prefix}wrist_2_link">
+    <link name="${prefix}wrist2_link">
       <visual>
         <origin xyz="0 0 ${wrist_2_visual_offset}" rpy="0 0 0"/>
         <geometry>
@@ -198,7 +198,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
       </xacro:cylinder_inertial>
     </link>
-    <link name="${prefix}wrist_3_link">
+    <link name="${prefix}wrist3_link">
       <visual>
         <origin xyz="0 0 ${wrist_3_visual_offset}" rpy="${pi/2} 0 0"/>
         <geometry>
@@ -266,9 +266,9 @@
       </xacro:if>
       <dynamics damping="0" friction="0"/>
     </joint>
-    <joint name="${prefix}wrist_1_joint" type="revolute">
+    <joint name="${prefix}wrist1_joint" type="revolute">
       <parent link="${prefix}forearm_link" />
-      <child link="${prefix}wrist_1_link" />
+      <child link="${prefix}wrist1_link" />
       <origin xyz="${wrist_1_x} ${wrist_1_y} ${wrist_1_z}" rpy="${wrist_1_roll} ${wrist_1_pitch} ${wrist_1_yaw}" />
       <axis xyz="0 0 1" />
       <limit lower="${wrist_1_lower_limit}" upper="${wrist_1_upper_limit}"
@@ -278,9 +278,9 @@
       </xacro:if>
       <dynamics damping="0" friction="0"/>
     </joint>
-    <joint name="${prefix}wrist_2_joint" type="revolute">
-      <parent link="${prefix}wrist_1_link" />
-      <child link="${prefix}wrist_2_link" />
+    <joint name="${prefix}wrist2_joint" type="revolute">
+      <parent link="${prefix}wrist1_link" />
+      <child link="${prefix}wrist2_link" />
       <origin xyz="${wrist_2_x} ${wrist_2_y} ${wrist_2_z}" rpy="${wrist_2_roll} ${wrist_2_pitch} ${wrist_2_yaw}" />
       <axis xyz="0 0 1" />
       <limit lower="${wrist_2_lower_limit}" upper="${wrist_2_upper_limit}"
@@ -290,9 +290,9 @@
       </xacro:if>
       <dynamics damping="0" friction="0"/>
     </joint>
-    <joint name="${prefix}wrist_3_joint" type="revolute">
-      <parent link="${prefix}wrist_2_link" />
-      <child link="${prefix}wrist_3_link" />
+    <joint name="${prefix}wrist3_joint" type="revolute">
+      <parent link="${prefix}wrist2_link" />
+      <child link="${prefix}wrist3_link" />
       <origin xyz="${wrist_3_x} ${wrist_3_y} ${wrist_3_z}" rpy="${wrist_3_roll} ${wrist_3_pitch} ${wrist_3_yaw}" />
       <axis xyz="0 0 1" />
       <limit lower="${wrist_3_lower_limit}" upper="${wrist_3_upper_limit}"
@@ -319,7 +319,7 @@
     <!-- ROS-Industrial 'flange' frame: attachment point for EEF models -->
     <link name="${prefix}flange" />
     <joint name="${prefix}wrist_3-flange" type="fixed">
-      <parent link="${prefix}wrist_3_link" />
+      <parent link="${prefix}wrist3_link" />
       <child link="${prefix}flange" />
       <origin xyz="0 0 0" rpy="0 ${-pi/2.0} ${-pi/2.0}" />
     </joint>
@@ -331,6 +331,12 @@
       <origin xyz="0 0 0" rpy="${pi/2.0} 0 ${pi/2.0}"/>
       <parent link="${prefix}flange"/>
       <child link="${prefix}tool0"/>
+    </joint>
+    <link name="${prefix}ee_link"/>
+    <joint name="${prefix}ee_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 -${pi/2.0} ${pi/2.0}"/>
+      <parent link="${prefix}wrist3_link"/>
+      <child link="${prefix}ee_link"/>
     </joint>
   </xacro:macro>
 </robot>

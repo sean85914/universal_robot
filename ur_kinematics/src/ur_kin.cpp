@@ -42,6 +42,48 @@ namespace ur_kinematics {
     const double d5 =  0.08535;
     const double d6 =  0.0819;
     #endif
+    
+    // UR E SERIES
+    
+    //#define UR10E_PARAMS
+    #ifdef UR16E_PARAMS
+    const double d1 =  0.1807;
+    const double a2 = -0.4784;
+    const double a3 = -0.36;
+    const double d4 =  0.17415;
+    const double d5 =  0.11985;
+    const double d6 =  0.11655;
+    #endif
+    
+    //#define UR10E_PARAMS
+    #ifdef UR10E_PARAMS
+    const double d1 =  0.1807;
+    const double a2 = -0.6127;
+    const double a3 = -0.57155;
+    const double d4 =  0.17415;
+    const double d5 =  0.11985;
+    const double d6 =  0.11655;
+    #endif
+    
+    //#define UR5E_PARAMS
+    #ifdef UR5E_PARAMS
+    const double d1 =  0.16250;
+    const double a2 = -0.42500;
+    const double a3 = -0.39220;
+    const double d4 =  0.13330;
+    const double d5 =  0.09970;
+    const double d6 =  0.09960;
+    #endif
+    
+    //#define UR3E_PARAMS
+    #ifdef UR3E_PARAMS
+    const double d1 =  0.15185;
+    const double a2 = -0.24355;
+    const double a3 = -0.2132;
+    const double d4 =  0.13105;
+    const double d5 =  0.08535;
+    const double d6 =  0.0921;
+    #endif
   }
 
   void forward(const double* q, double* T) {
