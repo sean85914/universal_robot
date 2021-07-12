@@ -33,6 +33,8 @@ set_target_properties(ur5_kin PROPERTIES COMPILE_DEFINITIONS "UR5_PARAMS")
 add_library(ur10_kin src/ur_kin.cpp)
 set_target_properties(ur10_kin PROPERTIES COMPILE_DEFINITIONS "UR10_PARAMS")
 
+add_library(ur5e_kin src/ur_kin.cpp)
+set_target_properties(ur5_kin PROPERTIES COMPILE_DEFINITIONS "UR5E_PARAMS")
 
 add_library(ur3_moveit_plugin src/ur_moveit_plugin.cpp)
 set_target_properties(ur3_moveit_plugin PROPERTIES COMPILE_DEFINITIONS "UR3_PARAMS")
@@ -60,7 +62,7 @@ target_link_libraries(ur10_moveit_plugin
 ## Install ##
 #############
 
-install(TARGETS ur3_kin ur5_kin ur10_kin ur3_moveit_plugin ur5_moveit_plugin ur10_moveit_plugin
+install(TARGETS ur3_kin ur5_kin ur10_kin ur5e_kin ur3_moveit_plugin ur5_moveit_plugin ur10_moveit_plugin
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
